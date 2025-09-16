@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Тест на выбор</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container">
+        <h1>Тест по DevOps</h1>
+        <p class="subtitle">Загрузите файл теста в формате JSON или CSV и пройдите его прямо в браузере.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="upload-section" class="card">
+        <h2>Загрузка теста</h2>
+        <div class="uploader" id="uploaderBlock">
+          <input type="file" id="fileInput" accept=".json,.csv,.md" />
+          <button id="pickFileBtn" class="btn" type="button">Выбрать файл (JSON/CSV/MD)</button>
+          <div id="uploadModes" style="margin-top:12px; display:flex; gap:12px; align-items:center;">
+            <label class="quiz-title" for="modeSelectUpload" style="font-weight:500;">Режим:</label>
+            <select id="modeSelectUpload" class="btn" style="padding:8px 10px;">
+              <option value="random40">40 случайных вопросов</option>
+              <option value="marathon" selected>Марафон</option>
+            </select>
+          </div>
+        </div>
+        <details class="help">
+          <summary>Какой формат файла поддерживается?</summary>
+          <div class="help-content">
+            <p><strong>JSON</strong> формат:</p>
+            <pre><code>{
+  "title": "Пример теста",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Столица Франции?",
+      "options": ["Берлин", "Париж", "Рим"],
+      "correct": [1]
+    },
+    {
+      "id": 2,
+      "text": "Выберите простые числа",
+      "options": ["4", "5", "7", "9"],
+      "correct": [1, 2]
+    }
+  ]
+}</code></pre>
+            <p><strong>CSV</strong> формат (разделитель запятая):</p>
+            <pre><code>question,options,correct
+Столица Франции?,Берлин;Париж;Рим,2
+Выберите простые числа,4;5;7;9,2;3</code></pre>
+            <p><strong>Markdown</strong> (поддерживается стиль, как в файле DevOps):
+            заголовок вопроса в виде <code>**1. Текст вопроса**</code>,
+            варианты как строки, начинающиеся с <code>*   </code>,
+            строка ответа <code>**Ответ:** правильный вариант</code>.</p>
+            <ul>
+              <li><strong>options</strong>: варианты через точку с запятой ;</li>
+              <li><strong>correct</strong>: номера правильных вариантов (начиная с 1), через ; для множественного выбора;</li>
+            </ul>
+            <p>
+              Примеры: <a href="./sample-quiz.json" download>sample-quiz.json</a> · <a href="./sample-quiz.csv" download>sample-quiz.csv</a>
+            </p>
+          </div>
+        </details>
+        <div id="loadError" class="alert hidden" role="alert"></div>
+        <div id="quizMeta" class="quiz-meta hidden"></div>
+        <button id="startBtn" class="btn primary" disabled>Начать тест</button>
+      </section>
+
+      <section id="quiz-section" class="card hidden">
+        <div class="quiz-header">
+          <div id="quizTitle" class="quiz-title"></div>
+          <div id="progress" class="progress"></div>
+        </div>
+
+        <div id="questionContainer" class="question"></div>
+
+        <div class="quiz-actions">
+          <button id="prevBtn" class="btn" disabled>Назад</button>
+          <button id="nextBtn" class="btn">Далее</button>
+          <button id="submitBtn" class="btn success hidden">Завершить</button>
+        </div>
+      </section>
+
+      <section id="results-section" class="card hidden">
+        <h2>Результаты</h2>
+        <div id="resultsSummary" class="results-summary"></div>
+        <div id="resultsDetails" class="results-details"></div>
+        <div class="results-actions">
+          <button id="restartBtn" class="btn">Пройти заново</button>
+          <button id="downloadReportBtn" class="btn">Скачать отчёт CSV</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
+
+

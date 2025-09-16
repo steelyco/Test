@@ -1,0 +1,111 @@
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #111827;
+  --primary-600: #111827;
+  --success: #16a34a;
+  --danger: #e11d48;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.app-header, .app-footer { padding: 24px 0; }
+
+.app-header h1 { font-size: 28px; font-weight: 600; margin: 0; }
+.subtitle { color: var(--muted); margin-top: 8px; font-size: 14px; }
+
+.subtitle { color: var(--muted); margin-top: 8px; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 16px 0; }
+
+.uploader { display: grid; gap: 12px; margin-bottom: 12px; }
+
+.drop-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 20px; text-align: center; color: var(--muted); cursor: pointer; background: #fafafa; }
+.drop-zone.drag {
+  border-color: var(--text);
+  color: var(--text);
+  background: #f3f4f6;
+}
+
+.help summary { cursor: pointer; }
+.help pre { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 12px; overflow: auto; }
+
+.btn { background: #ffffff; color: var(--text); border: 1px solid var(--border); padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+.btn:hover { background: #f3f4f6; border-color: #d1d5db; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn.primary { background: var(--text); color: #ffffff; border-color: var(--text); }
+.btn.primary:hover { background: #0b1220; border-color: #0b1220; }
+.btn.success { background: var(--success); border-color: var(--success); color: #ffffff; }
+
+#startBtn { margin-top: 20px; }
+
+/* Скрываем нативный инпут, чтобы не показывалось "Файл не выбран" */
+#fileInput { display: none; }
+
+.alert { border: 1px solid var(--danger); color: #7f1d1d; background: #fee2e2; padding: 10px; border-radius: 8px; }
+.hidden { display: none; }
+
+.quiz-meta { color: var(--muted); margin-top: 8px; }
+.quiz-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.quiz-title { font-weight: 600; }
+.progress { color: var(--muted); font-size: 14px; }
+
+.question { display: grid; gap: 12px; }
+.question-title { font-size: 18px; font-weight: 600; }
+.options { display: grid; gap: 8px; }
+.option { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; cursor: pointer; }
+.option input { margin: 0; }
+.option.correct { border-color: #86efac; background: #f0fdf4; }
+.option.incorrect { border-color: #fecdd3; background: #fff1f2; }
+
+.quiz-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+
+.results-summary { font-size: 16px; margin-bottom: 12px; color: var(--text); }
+.results-details { display: grid; gap: 12px; }
+.result-item { border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: #ffffff; }
+.result-item .your { color: #991b1b; }
+.result-item .correct { color: #065f46; }
+
+@media (max-width: 640px) {
+  .quiz-header { flex-direction: column; align-items: flex-start; }
+  .quiz-actions { justify-content: stretch; flex-wrap: wrap; }
+}
+
+/* Мобильная версия (iPhone 13 ~ 390px ширина) */
+@media (max-width: 420px) {
+  .container { padding: 0 12px; }
+  .card { padding: 16px; margin: 12px 0; }
+  .app-header h1 { font-size: 22px; }
+  .subtitle { font-size: 13px; }
+  .drop-zone { font-size: 14px; padding: 16px; }
+  .btn { width: 100%; }
+  #pickFileBtn { width: 100%; }
+  .quiz-actions { flex-direction: column; align-items: stretch; gap: 8px; }
+  .results-actions { display: flex; flex-direction: column; gap: 8px; }
+  .options { gap: 10px; }
+  .option { padding: 14px; }
+  .question-title { font-size: 16px; }
+  .results-summary { font-size: 16px; }
+}
+
+
