@@ -389,16 +389,18 @@ fileInput.addEventListener('change', (e) => {
 
 if (pickFileBtn) pickFileBtn.addEventListener('click', () => fileInput.click());
 dropZone && dropZone.addEventListener('click', () => fileInput.click());
-dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
-dropZone.addEventListener('drop', (e) => {
-  e.preventDefault();
-  dropZone.classList.remove('drag');
-  const files = e.dataTransfer?.files;
-  if (files && files.length) handleFiles(files);
-});
+if (dropZone) {
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag');
+    const files = e.dataTransfer?.files;
+    if (files && files.length) handleFiles(files);
+  });
+}
 
-startBtn.addEventListener('click', () => startQuiz());
+if (startBtn) startBtn.addEventListener('click', () => startQuiz());
 prevBtn.addEventListener('click', () => go(-1));
 nextBtn.addEventListener('click', () => go(1));
 submitBtn.addEventListener('click', () => showResults());
